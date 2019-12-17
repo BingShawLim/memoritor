@@ -22,11 +22,11 @@ function init() {
     }
 
     function restart() {
+        cardClicks = 0;
         matchCount = 0;
         matchMiss = 0;
         $(".cardboard").empty()
-        clearInterval(intervalTimer);
-        initialize();
+        $('.welcomebox').fadeIn();
     }
 
     function initialize() {
