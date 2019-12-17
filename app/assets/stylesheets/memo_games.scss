@@ -56,22 +56,21 @@ h1 {
 
 .starting,
 .again,
-.btn,
-.btn2 {
+.btn {
     width: 100%;
-    height: 50px;
+    height: 30px;
     background-color: #000;
     margin: auto;
     color: #fff;
     padding-top: 10px;
     font-family: 'Special Elite', cursive;
     cursor: pointer;
+    text-align: center;
 }
 
 .starting:hover,
 .again:hover,
-.btn:hover,
-.btn2:hover {
+.btn:hover {
     background-color: #ccc;
     color: #000;
 }
@@ -191,7 +190,7 @@ h1 {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    margin-top: 8%;
+    margin-top: 6%;
 }
 
 .startbox,

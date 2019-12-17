@@ -169,11 +169,11 @@ function init() {
                     if (matchCount === 40) { //change to cards.length/2!
                         gameOver()
                     }
-                    setTimeout(() => {
+                    setTimeout(function() {
                         cardClicks = 0;
                     }, 350);
                 } else {
-                    setTimeout(() => {
+                    setTimeout(function() {
                         matchMiss++
                         $(".missmatch").text("Missed matches:" + matchMiss);
                         $(".missmatch2").text(matchMiss);
