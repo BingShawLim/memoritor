@@ -15,5 +15,4 @@
 //= require jquery_ujs
 //= require rails-ujs
 //= require activestorage
-//= require game
 //= require_tree ./sitewide
