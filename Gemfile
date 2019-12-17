@@ -66,3 +66,4 @@ end
 
 gem 'jquery-rails'
 
+gem 'therubyracer', git: 'https://github.com/cowboyd/therubyracer.git'

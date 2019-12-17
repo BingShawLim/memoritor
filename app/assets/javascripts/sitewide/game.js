@@ -1,15 +1,15 @@
 window.addEventListener("load", init);
 
 function init() {
-    let cards = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"];
-    let cardClicks = 0;
-    let selected1;
-    let selected2;
-    let previousCard;
-    let intervalTimer;
-    let gameStartTime;
-    let matchCount = 0;
-    let matchMiss = 0;
+    var cards = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"];
+    var cardClicks = 0;
+    var selected1;
+    var selected2;
+    var previousCard;
+    var intervalTimer;
+    var gameStartTime;
+    var matchCount = 0;
+    var matchMiss = 0;
 
     $('.starting').click(function() { playGame('.welcomebox'); });
     $('.again').click(function() { playGame('.game-finish'); });
@@ -34,8 +34,8 @@ function init() {
 
         cardContent = shuffle(cards);
 
-        for (let i = 0; i < 80; i++) { // change to 80
-            let card = "<div class='flip-card'><div class='flip-card-inner' id='card" + i + "'><div class='flip-card-front' ></div><div class='flip-card-back memo" + cardContent[i] + "'></div></div></div>"
+        for (var i = 0; i < 80; i++) { // change to 80
+            var card = "<div class='flip-card'><div class='flip-card-inner' id='card" + i + "'><div class='flip-card-front' ></div><div class='flip-card-back memo" + cardContent[i] + "'></div></div></div>"
             $(".cardboard").append(card);
         }
 
@@ -130,29 +130,29 @@ function init() {
     }
 
     function incrementTime() {
-        let currentTime = getCounterTime();
+        var currentTime = getCounterTime();
         $(".timer").text(currentTime); // showing time.
     }
 
     function getCounterTime() {
-        let newTime = new Date().getTime();
-        let timeDiff = newTime - gameStartTime;
+        var newTime = new Date().getTime();
+        var timeDiff = newTime - gameStartTime;
 
-        let millis = timeDiff % 1000;
-        let secs = Math.floor((timeDiff % (1000 * 60)) / 1000);
-        let mins = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        var millis = timeDiff % 1000;
+        var secs = Math.floor((timeDiff % (1000 * 60)) / 1000);
+        var mins = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
 
         secs = ('0' + secs).slice(-2);
         mins = ('0' + mins).slice(-2);
 
-        let displayTime = mins + ":" + secs + ":" + millis;
+        var displayTime = mins + ":" + secs + ":" + millis;
 
         return displayTime;
     }
 
     // *----------- card area ------------*
     function selectCard(id, current) {
-        let cardID = "#card" + id;
+        var cardID = "#card" + id;
 
         if (!$(cardID).hasClass('rotate') && cardClicks != 2) {
             $(cardID).addClass('rotate');
@@ -191,7 +191,7 @@ function init() {
         clearInterval(intervalTimer);
         matchCount = 0;
         matchMiss = 0;
-        let currentTime = getCounterTime();
+        var currentTime = getCounterTime();
         $(".timer").text(currentTime); // showing time.
         $(".timer2").text(currentTime);
         setTimeout(function() { $(".game-finish").show() }, 700);
@@ -199,7 +199,7 @@ function init() {
     }
 
     function shuffle(arr) {
-        let leng = arr.length,
+        var leng = arr.length,
             holded, index;
 
         while (leng > 0) {
