@@ -1,8 +1,7 @@
 window.addEventListener("load", init);
 
 function init() {
-    // const cards = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"];
-    const cards = ["1", "2", "2", "1", "3", "4", "3", "4"]
+    const cards = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"];
     let cardClicks = 0;
     let selected1;
     let selected2;
@@ -23,10 +22,10 @@ function init() {
     }
 
     function restart() {
-        $(".cardboard").empty()
-        clearInterval(intervalTimer);
         matchCount = 0;
         matchMiss = 0;
+        $(".cardboard").empty()
+        clearInterval(intervalTimer);
         initialize();
     }
 
@@ -35,7 +34,7 @@ function init() {
 
         cardContent = shuffle(cards);
 
-        for (let i = 0; i < 8; i++) { // change to 80
+        for (let i = 0; i < 80; i++) { // change to 80
             let card = "<div class='flip-card'><div class='flip-card-inner' id='card" + i + "'><div class='flip-card-front' ></div><div class='flip-card-back memo" + cardContent[i] + "'></div></div></div>"
             $(".cardboard").append(card);
         }
@@ -167,7 +166,7 @@ function init() {
                 selected2 = current;
                 if (selected1 === selected2) {
                     matchCount++;
-                    if (matchCount === 4) { //change to cards.length/2!
+                    if (matchCount === 40) { //change to cards.length/2!
                         gameOver()
                     }
                     setTimeout(() => {
