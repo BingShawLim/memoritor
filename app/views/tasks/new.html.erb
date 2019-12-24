@@ -1,0 +1,15 @@
+<header>
+    <div>
+        <h1>MEMORITOR</h1>
+        <p id="subtitle">the unfriendly card-matching game</p>
+     </div>
+ </header>
+
+ <%= simple_form_for @task do |f| %>
+  <%= f.input :name %>
+  <%= f.input :gametime, input_html: {.value: 'timer2'.to_s} %>
+  <%= f.input :missed, input_html: {value: 'missmatch2'} %>
+  <%= f.submit "Submit!" %>
+<% end %>
+
+<footer><a href="https://github.com/BingShawLim" target="_blank">Create by Bing Shaw Lim</a></footer>

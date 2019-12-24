@@ -1,4 +1,6 @@
-<header>
+<%
+=begin%>
+ <header>
     <div>
         <h1>MEMORITOR</h1>
         <p id="subtitle">the unfriendly card-matching game</p>
@@ -33,8 +35,10 @@
         '</div></li>';
         htmlString += liElement;
       });
-      var ulTodos = $('.todo-list');
-      ulTodos.html(htmlString);
+      var ulScore = $('.scorelist');
+      ulScore.html(htmlString);
     });
   });
-</script>
+</script> 
+<%
+=end%>
