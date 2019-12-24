@@ -11,4 +11,11 @@ RSpec.describe TasksController, type: :controller do
         end
     end
 
+
+    describe "tasks#new action" do
+    it "should successfully show the new entry" do
+      get :new
+      expect(response).to have_http_status(:success)
+    end
+  end
 end

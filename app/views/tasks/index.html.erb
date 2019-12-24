@@ -1,0 +1,44 @@
+<%
+=begin%>
+ <header>
+    <div>
+        <h1>MEMORITOR</h1>
+        <p id="subtitle">the unfriendly card-matching game</p>
+     </div>
+ </header>
+    
+
+<div class="container">
+    <div class="btnbox">
+        <div class="backgame">Go to Game</div>
+        <div class="thescore">
+        <ul class="scorelist">
+
+        </ul>
+        </div>
+    </div>
+ </div>
+
+
+<footer><a href="https://github.com/BingShawLim" target="_blank">Create by Bing Shaw Lim</a></footer>
+
+<script>
+  $(function() {
+    $.get("/tasks").success( function( data ) {
+      var htmlString = "";
+
+      $.each(data, function(index,  task) {
+        var liElement = '<li><div class="view">'+
+        '<label>'+ task.name +'</label>'+
+        '<label>'+ task.gametime +'</label>'+
+        '<label>'+ task.missed +'</label>'+
+        '</div></li>';
+        htmlString += liElement;
+      });
+      var ulScore = $('.scorelist');
+      ulScore.html(htmlString);
+    });
+  });
+</script> 
+<%
+=end%>

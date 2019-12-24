@@ -2,6 +2,7 @@ window.addEventListener("load", init);
 
 function init() {
     var cards = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"];
+    // var cards = ["1", "2", "3", "4", "1", "2", "3", "4"];
     var cardClicks = 0;
     var selected1;
     var selected2;
@@ -10,10 +11,12 @@ function init() {
     var gameStartTime;
     var matchCount = 0;
     var matchMiss = 0;
+    var timerNum = 0;
 
     $('.starting').click(function() { playGame('.welcomebox'); });
     $('.again').click(function() { playGame('.game-finish'); });
-    $('.btn').click(function() { restart(); });
+    $('#game-tab').click(function() { goGame(); });
+    $('#score-tab').click(function() { goScore(); });
 
     function playGame(target) {
         $(target).fadeOut();
@@ -25,11 +28,29 @@ function init() {
         cardClicks = 0;
         matchCount = 0;
         matchMiss = 0;
+        timerNum = 0;
+        clearInterval(intervalTimer);
         $(".cardboard").empty()
-        $('.welcomebox').fadeIn();
+        initialize();
+    }
+
+    function goGame() {
+        $('.thegame').show();
+        $('.thescore').hide();
+        $('#game-tab').addClass('is-active');
+        $('#score-tab').removeClass('is-active');
+        restart()
+    }
+
+    function goScore() {
+        $('.thegame').hide();
+        $('.thescore').show();
+        $('#game-tab').removeClass('is-active');
+        $('#score-tab').addClass('is-active');
     }
 
     function initialize() {
+        $(".timer").text('00:00:000');
         $(".missmatch").text("Missed matches:" + matchMiss);
 
         cardContent = shuffle(cards);
@@ -120,8 +141,26 @@ function init() {
         $('#card78').click(function() { selectCard(78, cardContent[78]) });
         $('#card79').click(function() { selectCard(79, cardContent[79]) });
 
-        setTimeout(function() { startTimer() }, 700);
+        //setTimeout(function() { startTimer() }, 700);
     }
+
+    // *----------- score area -------------*
+    $(function() {
+        $.get("/tasks").success(function(data) {
+            var htmlString = "";
+
+            $.each(data, function(index, task) {
+                var liElement = '<li><div class="view">' +
+                    '<label class= "label-a"> Player: &nbsp' + task.name + '</label>' +
+                    '<label class= "label-b"> Spent Time: &nbsp' + task.gametime + '</label>' +
+                    '<label class= "label-c"> Missed matches: &nbsp' + task.missed + '</label>' +
+                    '</div></li>';
+                htmlString += liElement;
+            });
+            var ulScore = $('.scorelist');
+            ulScore.html(htmlString);
+        });
+    });
 
     // *----------- time area -------------*
     function startTimer() {
@@ -157,16 +196,19 @@ function init() {
         if (!$(cardID).hasClass('rotate') && cardClicks != 2) {
             $(cardID).addClass('rotate');
             cardClicks++;
-
+            timerNum++;
             if (cardClicks === 1) {
                 selected1 = current;
                 previousCard = cardID;
+                if (timerNum === 1) {
+                    startTimer()
+                }
             }
             if (cardClicks === 2) {
                 selected2 = current;
                 if (selected1 === selected2) {
                     matchCount++;
-                    if (matchCount === 40) { //change to cards.length/2!
+                    if (matchCount === 40) { //change to 40!
                         gameOver()
                     }
                     setTimeout(function() {
@@ -191,6 +233,7 @@ function init() {
         clearInterval(intervalTimer);
         matchCount = 0;
         matchMiss = 0;
+        timerNum = 0;
         var currentTime = getCounterTime();
         $(".timer").text(currentTime); // showing time.
         $(".timer2").text(currentTime);
