@@ -145,6 +145,23 @@ function init() {
     }
 
     // *----------- score area -------------*
+
+    // .replace(/[:]/g, '')
+    //     .sort(function(a, b) {
+    //         return parseFloat(a.gametime) - parseFloat(b.gametime);
+    //     });
+
+    // function sort_by_key(array, key) {
+    //     return array.sort(function(a, b) {
+    //         var x = a[key];
+    //         var y = b[key];
+    //         return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    //     });
+    // } 
+    //** above just some idea to build the list sort by shorter gametime/ and grab data from DOM**
+
+    people = sort_by_key(people, 'name');
+
     $(function() {
         $.get("/tasks").success(function(data) {
             var htmlString = "";
