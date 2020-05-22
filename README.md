@@ -3,7 +3,7 @@ Flip Card matching memory game made with pure JS,longterm learning project.
 https://the-memoritor-bingshaw.herokuapp.com
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+![Example screenshot](./memoritor.JPG)
 
 ## Technologies
 * JavaScript
